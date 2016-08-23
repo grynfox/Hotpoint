@@ -1,0 +1,74 @@
+﻿@model TheServer.Models.itenspedido
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>itenspedido</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.itens.nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.itens.nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pedidomesa.idPedidoMesa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pedidomesa.idPedidoMesa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dataPedido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dataPedido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quantidade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quantidade)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.valorTotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.valorTotal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.observacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.observacao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.progresso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.progresso)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.iditensPedido }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
