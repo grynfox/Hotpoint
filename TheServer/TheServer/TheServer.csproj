@@ -180,7 +180,7 @@
     <Compile Include="Models\itenspedido.cs" />
     <Compile Include="Models\mesa.cs" />
     <Compile Include="Models\mesatempedido.cs" />
-    <Compile Include="Models\Model.cs" />
+    <Compile Include="Models\ModelContext.cs" />
     <Compile Include="Models\pedidomesa.cs" />
     <Compile Include="Models\pessoa.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

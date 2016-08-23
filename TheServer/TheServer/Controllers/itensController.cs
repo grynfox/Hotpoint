@@ -12,14 +12,14 @@ namespace TheServer.Controllers
 {
     public class itensController : Controller
     {
-        private Model db = new Model();
+        private ModelContext db = new ModelContext();
 
         // GET: itens
         public ActionResult Index()
         {
             var itens = db.itens.Include(i => i.categoria);
-            return Json(itens.ToList(), JsonRequestBehavior.AllowGet);
-            //return View(itens.ToList());
+            //return Json(itens.ToList(), JsonRequestBehavior.AllowGet);
+            return View(itens.ToList());
         }
 
         // GET: itens/Details/5

@@ -12,12 +12,17 @@ namespace TheServer.Controllers
 {
     public class categoriasController : Controller
     {
-        private Model db = new Model();
+        private ModelContext db = new ModelContext();
 
         // GET: categorias
         public ActionResult Index()
         {
-            return Json(db.categoria.ToList(), JsonRequestBehavior.AllowGet);
+            // to prevent circular reference disable proxyCreation when going to serialize the result
+            db.Configuration.ProxyCreationEnabled = false;
+            var result = db.categoria.ToList();
+            db.Configuration.ProxyCreationEnabled = true;
+
+            return Json(result, JsonRequestBehavior.AllowGet);
             //;return View(db.categoria.ToList());
         }
 

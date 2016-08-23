@@ -5,9 +5,9 @@ namespace TheServer.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class Model : DbContext
+    public partial class ModelContext : DbContext
     {
-        public Model()
+        public ModelContext()
             : base("name=ModelConfig")
         {
         }
@@ -27,10 +27,10 @@ namespace TheServer.Models
                 .Property(e => e.descricao)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<categoria>();
-                //.HasMany(e => e.itens)
-                //.WithRequired(e => e.categoria)
-                //.WillCascadeOnDelete(false);
+            modelBuilder.Entity<categoria>()
+                .HasMany(e => e.itens)
+                .WithRequired(e => e.categoria)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<grupopermicoes>()
                 .Property(e => e.nome)

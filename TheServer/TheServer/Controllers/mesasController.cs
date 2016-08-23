@@ -12,7 +12,7 @@ namespace TheServer.Controllers
 {
     public class mesasController : Controller
     {
-        private Model db = new Model();
+        private ModelContext db = new ModelContext();
 
         // GET: mesas
         public ActionResult Index()

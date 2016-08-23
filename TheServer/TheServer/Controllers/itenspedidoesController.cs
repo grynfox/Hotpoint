@@ -12,7 +12,7 @@ namespace TheServer.Controllers
 {
     public class itenspedidoesController : Controller
     {
-        private Model db = new Model();
+        private ModelContext db = new ModelContext();
 
         // GET: itenspedidoes
         public ActionResult Index()

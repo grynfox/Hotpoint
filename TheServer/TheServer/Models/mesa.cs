@@ -19,11 +19,9 @@ namespace TheServer.Models
         [Key]
         public int idMesa { get; set; }
 
-        [Display(Name = "Nome da Mesa")]
         [StringLength(100)]
         public string nomeMesa { get; set; }
 
-        [Display(Name = "Mesa Vaga")]
         public bool isMesaVaga { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
