@@ -17,7 +17,7 @@ namespace TheServer.Controllers
         // GET: mesas
         public ActionResult Index()
         {
-            var teste = from st in db.mesa where st.nomeMesa.Contains("teste") select st;
+            var teste = db.mesa;
 
             return View(teste.ToList());
         }
