@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AppUtility.Factory;
+using AppUtility.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,10 +11,13 @@ namespace TheApp
 {
     public partial class App : Application
     {
+        public static HttpRequest TransportManager { get; set; }
+
         public App()
         {
             InitializeComponent();
 
+            TransportManager = RequestFactory.createHttp("ServerIp");
             MainPage = new TheApp.MainPage();
         }
 
