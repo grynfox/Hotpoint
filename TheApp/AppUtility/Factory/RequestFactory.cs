@@ -15,17 +15,17 @@ namespace AppUtility.Factory
             return new HttpRequest(serverUrl);
         }
 
-        public static HttpRequest createHttps(string serverUrl, int mesaId, string senha)
+        public static HttpRequest createHttps(string serverUrl, IAuthentication authMethod)
         {
             var ret = new HttpRequest(serverUrl);
-            var auth = AuthenticationFactory.createAuthenticationHeader(mesaId.ToString(), senha);
+            var auth = new AuthenticationHeaderValue(authMethod.AuthenticationScheme, authMethod.AuthenticationParameter); 
             ret.InsertAuthorization(auth);
             return ret;
         }
 
-        public static void insertSsl(ref HttpRequest req, int mesaId, string senha)
+        public static void insertSsl(ref HttpRequest req, IAuthentication authMethod)
         {
-            var auth = AuthenticationFactory.createAuthenticationHeader(mesaId.ToString(), senha);
+            var auth = new AuthenticationHeaderValue(authMethod.AuthenticationScheme, authMethod.AuthenticationParameter);
             req.InsertAuthorization(auth);
         }
 

@@ -9,6 +9,6 @@ namespace AppUtility.Http
     public interface IXW3FormModel
     {
         Dictionary<String, String> GetBody();
-        string GetControlerPath();
+        string GetControllerPath();
     }
 }

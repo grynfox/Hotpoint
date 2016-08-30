@@ -33,7 +33,7 @@ namespace AppUtility.Http
         public async Task<string> PostAsync(IXW3FormModel model)
         {
             FormUrlEncodedContent form = new FormUrlEncodedContent(model.GetBody());
-            HttpResponseMessage response = await client.PostAsync(serverUrl + model.GetControlerPath(), form).ConfigureAwait(false);
+            HttpResponseMessage response = await client.PostAsync(serverUrl + model.GetControllerPath(), form).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsStringAsync();
         }
@@ -61,7 +61,7 @@ namespace AppUtility.Http
                 form.Add(content);
             }
             //httpClient.Timeout = TimeSpan.FromMinutes(20);
-            HttpResponseMessage response = await client.PostAsync(serverUrl + model.GetControlerPath(), form).ConfigureAwait(false);
+            HttpResponseMessage response = await client.PostAsync(serverUrl + model.GetControllerPath(), form).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsStringAsync();
         }
@@ -73,7 +73,7 @@ namespace AppUtility.Http
         public async Task<string> PutAsync(IXW3FormModel model)
         {
             FormUrlEncodedContent form = new FormUrlEncodedContent(model.GetBody());
-            HttpResponseMessage response = await client.PutAsync(serverUrl + model.GetControlerPath(), form).ConfigureAwait(false);
+            HttpResponseMessage response = await client.PutAsync(serverUrl + model.GetControllerPath(), form).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsStringAsync();
         }
@@ -102,7 +102,7 @@ namespace AppUtility.Http
                 form.Add(content);
             }
             //httpClient.Timeout = TimeSpan.FromMinutes(20);
-            HttpResponseMessage response = await client.PutAsync(serverUrl + model.GetControlerPath(), form).ConfigureAwait(false);
+            HttpResponseMessage response = await client.PutAsync(serverUrl + model.GetControllerPath(), form).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsStringAsync();
         }
@@ -114,7 +114,7 @@ namespace AppUtility.Http
         /// <returns></returns>
         public async Task<string> DelAsync(IXW3FormModel model)
         {
-            string controlerPath = model.GetControlerPath();
+            string controlerPath = model.GetControllerPath();
             if ((controlerPath.Length - 1) != controlerPath.LastIndexOf('/'))
                 controlerPath += '/';
             string constructor = serverUrl + controlerPath + "?";
@@ -135,7 +135,7 @@ namespace AppUtility.Http
         /// <returns></returns>
         public async Task<string> GetAsync(IXW3FormModel model)
         {
-            string controlerPath = model.GetControlerPath();
+            string controlerPath = model.GetControllerPath();
             if ((controlerPath.Length - 1) != controlerPath.LastIndexOf('/'))
                 controlerPath += '/';
             string constructor = serverUrl + controlerPath + "?";
@@ -144,9 +144,18 @@ namespace AppUtility.Http
                 constructor += str.Key + "=" + str.Value + "&";
             }
             constructor = constructor.Remove(constructor.Length - 1);
-            HttpResponseMessage response = await client.GetAsync(new Uri(constructor)).ConfigureAwait(false);
-            response.EnsureSuccessStatusCode();
-            return await response.Content.ReadAsStringAsync();
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync(new Uri(constructor)).ConfigureAwait(false);
+                response.EnsureSuccessStatusCode();
+                return await response.Content.ReadAsStringAsync();
+            }
+            catch (Exception ex)
+            {
+                
+            }
+
+            return null;           
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AppUtility.Factory;
 using AppUtility.Http;
+using AppUtility.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,9 @@ namespace TheApp
         public App()
         {
             InitializeComponent();
-
-            TransportManager = RequestFactory.createHttp("ServerIp");
-            MainPage = new TheApp.MainPage();
+           
+            TransportManager = RequestFactory.createHttp("http://152.168.111.166/");
+            MainPage = new TheApp.Views.MainPage();
         }
 
         protected override void OnStart()
