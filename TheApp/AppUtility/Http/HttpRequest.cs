@@ -144,18 +144,10 @@ namespace AppUtility.Http
                 constructor += str.Key + "=" + str.Value + "&";
             }
             constructor = constructor.Remove(constructor.Length - 1);
-            try
-            {
-                HttpResponseMessage response = await client.GetAsync(new Uri(constructor)).ConfigureAwait(false);
-                response.EnsureSuccessStatusCode();
-                return await response.Content.ReadAsStringAsync();
-            }
-            catch (Exception ex)
-            {
-                
-            }
 
-            return null;           
+            HttpResponseMessage response = await client.GetAsync(new Uri(constructor)).ConfigureAwait(false);
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsStringAsync();
         }
     }
 }

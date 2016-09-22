@@ -18,7 +18,7 @@ namespace TheApp
         {
             InitializeComponent();
            
-            TransportManager = RequestFactory.createHttp("http://152.168.111.166/");
+            TransportManager = RequestFactory.createHttp("http://169.254.80.80/");
             MainPage = new TheApp.Views.MainPage();
         }
 

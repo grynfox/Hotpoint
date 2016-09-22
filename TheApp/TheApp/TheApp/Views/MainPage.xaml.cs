@@ -18,8 +18,17 @@ namespace TheApp.Views
 
         async void btnConexaoTeste(object sender, EventArgs e)
         {
-            await App.TransportManager.GetAsync(new PingServer());
-            btnSsl.IsEnabled = true;
+            try
+            {
+                var result = await App.TransportManager.GetAsync(new PingServer());
+                await DisplayAlert("Sucesso", result, "Ok");
+                btnSsl.IsEnabled = true;
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Erro", ex.Message, "Ok");
+            }
+
         }
 
         async void btnSSLTeste(object sender, EventArgs e)
