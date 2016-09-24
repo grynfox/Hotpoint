@@ -6,22 +6,36 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using TheServer.Attributes;
 using TheServer.Models;
 
 namespace TheServer.Controllers
 {
+    [MesaAuthorization]
     public class mesasController : Controller
     {
         private ModelContext db = new ModelContext();
 
         // GET: mesas
+        [AllowAnonymous]
         public ActionResult Index()
         {
-            var teste = db.mesa;
+            List<mesa> result;
+            using (var db = new ModelContext())
+            {
+                var query = from mesa in db.mesa
+                            join
+                            pedidomesa in db.pedidomesa
+                            on mesa equals pedidomesa.mesa
+                            select mesa;
+                db.Configuration.ProxyCreationEnabled = false;
+                result = query.Include(d => d.pedidomesa).ToList();
+                db.Configuration.ProxyCreationEnabled = true;
+            }
 
-            return View(teste.ToList());
+            return Json(result, JsonRequestBehavior.AllowGet);
+
         }
-
         // GET: mesas/Details/5
         public ActionResult Details(int? id)
         {
