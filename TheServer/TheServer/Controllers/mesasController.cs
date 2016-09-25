@@ -29,7 +29,7 @@ namespace TheServer.Controllers
                             on mesa equals pedidomesa.mesa
                             select mesa;
                 db.Configuration.ProxyCreationEnabled = false;
-                result = query.Include(d => d.pedidomesa).ToList();
+                result = query.ToList();
                 db.Configuration.ProxyCreationEnabled = true;
             }
 
