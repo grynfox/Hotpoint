@@ -20,22 +20,32 @@ namespace TheServer.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
-            List<mesa> result;
+            
             using (var db = new ModelContext())
             {
                 var query = from mesa in db.mesa
                             join
                             pedidomesa in db.pedidomesa
-                            on mesa equals pedidomesa.mesa
-                            select mesa;
-                db.Configuration.ProxyCreationEnabled = false;
-                result = query.ToList();
-                db.Configuration.ProxyCreationEnabled = true;
+                            on mesa equals pedidomesa.mesa into abc from x in abc.DefaultIfEmpty()
+                            join 
+                            mesatempedido in db.mesatempedido
+                            on mesa equals mesatempedido.mesa
+                            into bcd from y in bcd.DefaultIfEmpty()
+                            select new { mesa.idMesa,
+                                         mesa.isMesaVaga,
+                                         mesa.nomeMesa,
+                                         pedidomesa = ( x != null ? x.idPedidoMesa : -1 ),
+                                         mesatempedido = new { requisitadoFechamento = (y != null ? y.requisitadoFechamento : false) ,
+                                                                senhaPedido = (y != null ? y.senhaPedido: "")}
+                                         
+                                        };
+                
+                var result = query.ToList();
+                return Json(result, JsonRequestBehavior.AllowGet);
             }
-
-            return Json(result, JsonRequestBehavior.AllowGet);
-
         }
+
+
         // GET: mesas/Details/5
         public ActionResult Details(int? id)
         {
