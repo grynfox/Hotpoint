@@ -24,8 +24,7 @@ namespace TheServer.Models
 
         [StringLength(400)]
         public string informacao { get; set; }
-        
-        [DataType(DataType.Currency)]
+
         public float valor { get; set; }
 
         public int idCategoria { get; set; }

@@ -21,6 +21,7 @@ namespace TheServer.Models
 
         public int? idMesa { get; set; }
 
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public DateTime dataAbertura { get; set; }
 
         public DateTime? dataFechamento { get; set; }

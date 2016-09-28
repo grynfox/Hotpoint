@@ -16,6 +16,7 @@ namespace TheServer.Models
 
         public int idItem { get; set; }
 
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public DateTime dataPedido { get; set; }
 
         public float quantidade { get; set; }

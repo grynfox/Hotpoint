@@ -19,6 +19,7 @@ namespace TheServer.Models
         [Key]
         public int idMesa { get; set; }
 
+        [Required]
         [StringLength(100)]
         public string nomeMesa { get; set; }
 

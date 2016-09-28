@@ -17,7 +17,15 @@ namespace TheServer.Controllers
 
         public ActionResult Ping()
         {
-            return new HttpStatusCodeResult(HttpStatusCode.OK, "Pong");
+            //return new HttpStatusCodeResult(HttpStatusCode.OK, "Pong");
+
+            return Json("Pong", JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult logIn()
+        {
+            
+            return View();
         }
 
 

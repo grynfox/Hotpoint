@@ -41,6 +41,7 @@
     <Compile Include="Factory\RequestFactory.cs" />
     <Compile Include="Http\RequestResult.cs" />
     <Compile Include="Http\HttpRequest.cs" />
+    <Compile Include="Model\ClasseExemplo.cs" />
     <Compile Include="Model\MesaAuthentication.cs" />
     <Compile Include="Model\PingServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
