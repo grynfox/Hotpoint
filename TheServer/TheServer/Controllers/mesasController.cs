@@ -20,28 +20,37 @@ namespace TheServer.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
-            
+
             using (var db = new ModelContext())
             {
-                var query = from mesa in db.mesa
-                            join
-                            pedidomesa in db.pedidomesa
-                            on mesa equals pedidomesa.mesa into abc from x in abc.DefaultIfEmpty()
-                            join 
-                            mesatempedido in db.mesatempedido
-                            on mesa equals mesatempedido.mesa
-                            into bcd from y in bcd.DefaultIfEmpty()
-                            select new { mesa.idMesa,
-                                         mesa.isMesaVaga,
-                                         mesa.nomeMesa,
-                                         pedidomesa = ( x != null ? x.idPedidoMesa : -1 ),
-                                         mesatempedido = new { requisitadoFechamento = (y != null ? y.requisitadoFechamento : false) ,
-                                                                senhaPedido = (y != null ? y.senhaPedido: "")}
-                                         
-                                        };
-                
-                var result = query.ToList();
-                return Json(result, JsonRequestBehavior.AllowGet);
+                var query = from mesa in db.mesa.Include(m => m.pedidomesa).Include(m => m.mesatempedido)
+                            select new
+                            {
+                                idMesa = mesa.idMesa,
+                                isMesaVaga = mesa.isMesaVaga,
+                                mesatempedido = mesa.mesatempedido.Select(mtp => new
+                                {
+                                    requisitadoFechamento = mtp.requisitadoFechamento,
+                                    senhaPedido = mtp.senhaPedido
+
+                                }).ToList(),
+                                nomeMesa = mesa.nomeMesa,
+                                pedidomesa = mesa.pedidomesa.Select(pm => new
+                                {
+                                    dataAbertura = pm.dataAbertura,
+                                    dataFechamento = pm.dataFechamento,
+                                    idPedidoMesa = pm.idPedidoMesa,
+                                                                     
+                                }).ToList()
+                            };
+
+
+
+                //var query = from mesa in db.mesa select mesa;
+                //db.Configuration.LazyLoadingEnabled = false;
+                //db.Configuration.ProxyCreationEnabled = false;
+                var result = query.ToList();                
+                return Json(query.ToList(), JsonRequestBehavior.AllowGet);
             }
         }
 

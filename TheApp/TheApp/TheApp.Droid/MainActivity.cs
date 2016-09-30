@@ -6,7 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
-//http://goqr.me/api/ QRCODE GENERATOR
+//http://goqr.me/api/ QRCODE GENERATOR testar
 
 namespace TheApp.Droid
 {
