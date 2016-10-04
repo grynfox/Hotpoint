@@ -6,6 +6,15 @@
     <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
     <Button Text="Teste a conexão" Clicked="btnConexaoTeste"></Button>
     <Button x:Name="btnSsl" Text="Inserir SSL na conexão" Clicked="btnSSLTeste" IsEnabled="False"></Button>
+    <ListView ItemsSource="{Binding Mesas}">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <TextCell Text="{Binding nomeMesa}" />
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+
+
   </StackLayout>
 
 
