@@ -191,6 +191,7 @@
     <Compile Include="Controllers\itensController.cs" />
     <Compile Include="Controllers\itenspedidoesController.cs" />
     <Compile Include="Controllers\mesasController.cs" />
+    <Compile Include="DAL\MesaDAL.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -282,6 +283,12 @@
     </Content>
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DTO\DTO\DTO.csproj">
+      <Project>{A04CBF17-CC95-4D46-8AB7-25B368186AB2}</Project>
+      <Name>DTO</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

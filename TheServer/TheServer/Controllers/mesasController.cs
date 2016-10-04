@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TheServer.Attributes;
+using TheServer.DAL;
 using TheServer.Models;
 
 namespace TheServer.Controllers
@@ -20,38 +21,12 @@ namespace TheServer.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
-
-            using (var db = new ModelContext())
+            using (var dal = new MesaDAL())
             {
-                var query = from mesa in db.mesa.Include(m => m.pedidomesa).Include(m => m.mesatempedido)
-                            select new
-                            {
-                                idMesa = mesa.idMesa,
-                                isMesaVaga = mesa.isMesaVaga,
-                                mesatempedido = mesa.mesatempedido.Select(mtp => new
-                                {
-                                    requisitadoFechamento = mtp.requisitadoFechamento,
-                                    senhaPedido = mtp.senhaPedido
-
-                                }).ToList(),
-                                nomeMesa = mesa.nomeMesa,
-                                pedidomesa = mesa.pedidomesa.Select(pm => new
-                                {
-                                    dataAbertura = pm.dataAbertura,
-                                    dataFechamento = pm.dataFechamento,
-                                    idPedidoMesa = pm.idPedidoMesa,
-                                                                     
-                                }).ToList()
-                            };
-
-
-
-                //var query = from mesa in db.mesa select mesa;
-                //db.Configuration.LazyLoadingEnabled = false;
-                //db.Configuration.ProxyCreationEnabled = false;
-                var result = query.ToList();                
-                return Json(query.ToList(), JsonRequestBehavior.AllowGet);
+                var result = dal.listaMesas();
+                return Json(result.ToList(), JsonRequestBehavior.AllowGet);
             }
+           
         }
 
 
