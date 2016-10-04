@@ -12,14 +12,13 @@ using TheServer.Models;
 
 namespace TheServer.DAL
 {
-    public class MesaDAL: IDisposable
+    static class MesaDAL
     {
-        public void Dispose()
-        {
-            
-        }
-
-        public List<MesaDTO> listaMesas()
+        /// <summary>
+        /// Retorna uma lista das mesas leftJoin pedidoMesa e mesaTemPedido em DTO
+        /// </summary>
+        /// <returns></returns>
+        public static List<MesaDTO> listaMesas()
         {
             using (var db = new ModelContext())
             {

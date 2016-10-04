@@ -21,12 +21,8 @@ namespace TheServer.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
-            using (var dal = new MesaDAL())
-            {
-                var result = dal.listaMesas();
-                return Json(result.ToList(), JsonRequestBehavior.AllowGet);
-            }
-           
+            var result = MesaDAL.listaMesas();
+            return Json(result.ToList(), JsonRequestBehavior.AllowGet);
         }
 
 
