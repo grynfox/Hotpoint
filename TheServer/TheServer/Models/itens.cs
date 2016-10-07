@@ -16,6 +16,7 @@ namespace TheServer.Models
         }
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int idItem { get; set; }
 
         [Required]

@@ -11,12 +11,10 @@ namespace TheServer.Models
     {
         [Key]
         [Column(Order = 0)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int idMesa { get; set; }
 
         [Key]
         [Column(Order = 1)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int idPedidoMesa { get; set; }
 
         [Key]

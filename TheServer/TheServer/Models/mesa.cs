@@ -17,6 +17,7 @@ namespace TheServer.Models
         }
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int idMesa { get; set; }
 
         [Required]

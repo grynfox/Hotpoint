@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Core;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -23,6 +25,56 @@ namespace TheServer.Controllers
         {
             var result = MesaDAL.listaMesas();
             return Json(result.ToList(), JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult teste()
+        {
+            var db = new Models.ModelContext();
+            pedidomesa pm = db.pedidomesa.Add(new pedidomesa { idMesa = 11 });
+            
+            db.SaveChanges();
+            return Json(pm);
+        }
+
+        // GET: mesas
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult Authentication(int mesaId, string senha)
+        {
+            using (var db = new Models.ModelContext())
+            {
+                var mesa = db.mesa.Where(m => m.idMesa == mesaId).Include(m => m.mesatempedido).FirstOrDefault();
+
+                if (mesa == null)
+                {
+                    return new HttpUnauthorizedResult();
+                }
+                if (mesa.mesatempedido.FirstOrDefault() != null)
+                {
+                    var pedido = mesa.mesatempedido.First();
+                    if (pedido.senhaPedido != senha)
+                    {
+                        return new HttpUnauthorizedResult();
+                    }
+                }
+                else
+                {
+                    pedidomesa pm = db.pedidomesa.Add(new pedidomesa { idMesa = 11 });
+
+                    mesatempedido mtp = db.mesatempedido.Add(new mesatempedido { mesa = mesa, pedidomesa = pm, senhaPedido="bario" });
+                    db.Entry(mesa).State = EntityState.Unchanged;
+                    db.Entry(pm).State = EntityState.Added;
+                    db.SaveChanges();
+
+                    return Json(new { pm, mtp });
+                }
+
+                db.Configuration.ProxyCreationEnabled = false;
+                db.Configuration.LazyLoadingEnabled = false;
+                return Json(mesa);
+            }
+            //return Json(result.ToList(), JsonRequestBehavior.AllowGet);
         }
 
 
