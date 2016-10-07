@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -133,7 +134,7 @@ namespace AppUtility.Http
         /// </summary>
         /// <param name="model">Objeto a ser enviado</param>
         /// <returns></returns>
-        public async Task<string> GetAsync(IXW3FormModel model)
+        public async Task<T> GetAsync<T>(IXW3FormModel model)
         {
             string controlerPath = model.GetControllerPath();
             if ((controlerPath.Length - 1) != controlerPath.LastIndexOf('/'))
@@ -147,7 +148,8 @@ namespace AppUtility.Http
 
             HttpResponseMessage response = await client.GetAsync(new Uri(constructor)).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
-            return await response.Content.ReadAsStringAsync();
+            var stringResult = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<T>(stringResult);
         }
     }
 }
