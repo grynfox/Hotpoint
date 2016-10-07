@@ -35,10 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Factory\IAuthentication.cs" />
+    <Compile Include="Properties\Factory\IAuthentication.cs" />
     <Compile Include="Http\IDataFormModel.cs" />
     <Compile Include="Http\IXW3FormModel.cs" />
-    <Compile Include="Factory\RequestFactory.cs" />
+    <Compile Include="Properties\Factory\RequestFactory.cs" />
     <Compile Include="Http\RequestResult.cs" />
     <Compile Include="Http\HttpRequest.cs" />
     <Compile Include="Model\ClasseExemplo.cs" />
