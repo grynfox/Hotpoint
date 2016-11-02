@@ -45,6 +45,7 @@ namespace TheApp.Views
         private void Button_Clicked(object sender, EventArgs e)
         {
             this.Navigation.PushAsync(new SelecaoMesa());
+            //this.Navigation.PushAsync(new ZXing.Net.Mobile.Forms.ZXingScannerPage());
         }
     }
 }

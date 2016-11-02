@@ -1,16 +1,29 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
               x:Class="TheApp.Views.SelecaoMesa">
     <ContentPage.Content>
         <StackLayout Padding="10">
             <Label Text="Leia o QR Code da mesa" HorizontalTextAlignment="Center" FontSize="Large"/>
-            <Frame HeightRequest="300" BackgroundColor="White">
-                <Image x:Name="imgSrc" Aspect="Fill" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Image></Frame>
+            <AbsoluteLayout HeightRequest="300" BackgroundColor="White">
+                <zxing:ZXingScannerView x:Name="scanner" 
+                                        HorizontalOptions="FillAndExpand" 
+                                        VerticalOptions="FillAndExpand" 
+                                        AutomationId="scanView"                                       
+                                        IsScanning="True"
+                                        IsAnalyzing="True"
+                                        OnScanResult="ZXingScannerView_OnScanResult"
+                                        AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"
+                                        />
+                <Grid BackgroundColor="Red" AbsoluteLayout.LayoutFlags="PositionProportional, WidthProportional" 
+                      AbsoluteLayout.LayoutBounds=".5,.5,1,1"></Grid>
+            </AbsoluteLayout>
+
             <Label Text="Ou insira o numero associado logo abaixo"></Label>
-            <Entry/>
-            <Button Text="Ir"></Button>
+            <Entry x:Name="qrResult"/>
+            <Button  Text="Ir"></Button>
         </StackLayout>
-      
-  </ContentPage.Content>
+
+    </ContentPage.Content>
 </ContentPage>

@@ -13,8 +13,10 @@ using XLabs.Platform.Services;
 using XLabs.Platform.Services.Media;
 //http://goqr.me/api/ QRCODE GENERATOR testar
 
+//[assembly: UsesPermission(Android.Manifest.Permission.Flashlight)]
 namespace TheApp.Droid
 {
+
     [Activity(Label = "TheApp", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
@@ -35,10 +37,19 @@ namespace TheApp.Droid
 
             if (!Resolver.IsSet)
                 Resolver.SetResolver(container.GetResolver());
+
+
+            // Zxing QR CODE
+            ZXing.Net.Mobile.Forms.Android.Platform.Init();
             #endregion
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+        {
+            global::ZXing.Net.Mobile.Forms.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 }
