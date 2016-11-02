@@ -5,7 +5,8 @@
     <ContentPage.Content>
         <StackLayout Padding="10">
             <Label Text="Leia o QR Code da mesa" HorizontalTextAlignment="Center" FontSize="Large"/>
-            <Frame HeightRequest="300" BackgroundColor="White"></Frame>
+            <Frame HeightRequest="300" BackgroundColor="White">
+                <Image x:Name="imgSrc" Aspect="Fill" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Image></Frame>
             <Label Text="Ou insira o numero associado logo abaixo"></Label>
             <Entry/>
             <Button Text="Ir"></Button>

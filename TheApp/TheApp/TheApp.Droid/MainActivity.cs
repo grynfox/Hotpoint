@@ -6,6 +6,11 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using XLabs.Forms;
+using XLabs.Ioc;
+using XLabs.Platform.Device;
+using XLabs.Platform.Services;
+using XLabs.Platform.Services.Media;
 //http://goqr.me/api/ QRCODE GENERATOR testar
 
 namespace TheApp.Droid
@@ -18,7 +23,19 @@ namespace TheApp.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
+
             base.OnCreate(bundle);
+
+            #region Resolver Init
+            SimpleContainer container = new SimpleContainer();
+            container.Register<IDevice>(t => AndroidDevice.CurrentDevice);
+            container.Register<IMediaPicker>(t => t.Resolve<MediaPicker>());
+            container.Register<IDisplay>(t => t.Resolve<IDevice>().Display);
+            container.Register<INetwork>(t => t.Resolve<IDevice>().Network);
+
+            if (!Resolver.IsSet)
+                Resolver.SetResolver(container.GetResolver());
+            #endregion
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
