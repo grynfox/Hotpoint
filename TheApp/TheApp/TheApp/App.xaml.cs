@@ -19,7 +19,8 @@ namespace TheApp
             InitializeComponent();
            
             TransportManager = RequestFactory.createHttp("http://169.254.80.80/");
-            MainPage = new TheApp.Views.MainPage();
+            
+            MainPage = new NavigationPage(new TheApp.Views.MainPage());
         }
 
         protected override void OnStart()

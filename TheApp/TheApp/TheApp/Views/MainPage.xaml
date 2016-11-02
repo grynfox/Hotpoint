@@ -1,22 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TheApp.Views.MainPage">
-  <StackLayout>
-    <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
-    <Button Text="Teste a conexão" Clicked="btnConexaoTeste"></Button>
-    <Button x:Name="btnSsl" Text="Inserir SSL na conexão" Clicked="btnSSLTeste" IsEnabled="False"></Button>
-    <ListView ItemsSource="{Binding Mesas}">
-      <ListView.ItemTemplate>
-        <DataTemplate>
-          <TextCell Text="{Binding nomeMesa}" />
-        </DataTemplate>
-      </ListView.ItemTemplate>
-    </ListView>
+             x:Class="TheApp.Views.MainPage" BackgroundColor="White">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Image AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"
+               Aspect="AspectFill"
+               Source="fundo.jpg"></Image>
+            <StackLayout AbsoluteLayout.LayoutBounds="0,0.5,1,.5" AbsoluteLayout.LayoutFlags="All" Padding="20, 0" VerticalOptions="CenterAndExpand">
+                <Label Text="HotPoint" FontSize="40" HorizontalTextAlignment="Center"/>
+                <Grid Padding="20"/>
+                <Button Text="Entrar" 
+                        Clicked="Button_Clicked"
+                    FontSize="25"
+                    BackgroundColor="#1effffff"
+                    BorderColor="#151515" 
+                    BorderWidth="2" 
+                    BorderRadius="10">
+                </Button>
 
 
-  </StackLayout>
-
-
-
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
 </ContentPage>

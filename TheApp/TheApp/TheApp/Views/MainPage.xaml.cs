@@ -16,6 +16,7 @@ namespace TheApp.Views
         public ObservableCollection<MesaDTO> Mesas { get; set; }
         public MainPage()
         {
+            NavigationPage.SetHasNavigationBar(this, false);
             InitializeComponent();
             Mesas = new ObservableCollection<MesaDTO>();
             this.BindingContext = this;
@@ -26,12 +27,13 @@ namespace TheApp.Views
             try
             {
                 var result = await App.TransportManager.GetAsync<List<MesaDTO>>(new MesaRequest());
+                
                 foreach(var mesa in result)
                 {
                     Mesas.Add(mesa);
                 }
                 //await DisplayAlert("Sucesso", result[0]?.nomeMesa, "Ok");
-                btnSsl.IsEnabled = true;
+                //btnSsl.IsEnabled = true;
             }
             catch (Exception ex)
             {
@@ -40,10 +42,9 @@ namespace TheApp.Views
 
         }
 
-        async void btnSSLTeste(object sender, EventArgs e)
+        private void Button_Clicked(object sender, EventArgs e)
         {
-
+            this.Navigation.PushAsync(new SelecaoMesa());
         }
-
     }
 }
