@@ -21,11 +21,20 @@ namespace TheServer.Controllers
 
         // GET: mesas
         [AllowAnonymous]
-        public ActionResult Index()
+        public ActionResult Index(string nomeMesa = null)
         {
-            var result = MesaDAL.listaMesas();
-            return Json(result.ToList(), JsonRequestBehavior.AllowGet);
-        }
+            var result = MesaDAL.listaMesas(nomeMesa);
+            if (result.Count > 1)
+            {
+                return Json(result.ToList(), JsonRequestBehavior.AllowGet);
+            }
+            else if (result.Count == 1)
+            {
+                return Json(result[0], JsonRequestBehavior.AllowGet);
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.NoContent);
+        }      
+
         [HttpPost]
         [AllowAnonymous]
         public ActionResult teste()
@@ -67,12 +76,9 @@ namespace TheServer.Controllers
                     db.Entry(pm).State = EntityState.Added;
                     db.SaveChanges();
 
-                    return Json(new { pm, mtp });
+                    return new HttpStatusCodeResult(HttpStatusCode.OK, "Autenticação Autorizada, senha criada");
                 }
-
-                db.Configuration.ProxyCreationEnabled = false;
-                db.Configuration.LazyLoadingEnabled = false;
-                return Json(mesa);
+                return new HttpStatusCodeResult(HttpStatusCode.OK, "Autenticação Autorizada");
             }
             //return Json(result.ToList(), JsonRequestBehavior.AllowGet);
         }

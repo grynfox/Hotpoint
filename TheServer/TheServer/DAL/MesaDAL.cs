@@ -18,11 +18,11 @@ namespace TheServer.DAL
         /// Retorna uma lista das mesas leftJoin pedidoMesa e mesaTemPedido em DTO
         /// </summary>
         /// <returns></returns>
-        public static List<MesaDTO> listaMesas()
+        public static List<MesaDTO> listaMesas(string nomeMesa = null)
         {
             using (var db = new ModelContext())
             {
-                var query = from mesa in db.mesa.Include(m => m.pedidomesa).Include(m => m.mesatempedido)
+                var query = from mesa in db.mesa.Include(m => m.pedidomesa).Include(m => m.mesatempedido)                            
                             select new MesaDTO
                             {
                                 idMesa = mesa.idMesa,
@@ -42,6 +42,11 @@ namespace TheServer.DAL
 
                                 }).ToList()
                             };
+
+                if(!string.IsNullOrEmpty(nomeMesa))
+                {
+                    query = query.Where(m => m.nomeMesa == nomeMesa);
+                }
 
                 var result = query.ToList();
                 return result;                
