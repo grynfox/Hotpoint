@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TheApp.Views.popup.LogaMesaPopup">
+    <ContentPage.Content>
+        <StackLayout Padding="10" HorizontalOptions="Center">
+            <Label Text="{Binding mesa.nomeMesa, StringFormat='você escaneou a mesa {0}'}"
+                   FontSize="Large" HorizontalTextAlignment="Center"/>
+
+            <Grid Padding="20"/>
+
+            <Label VerticalOptions="Center">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label"
+                         Binding="{Binding mesa.isMesaVaga}"
+                         Value="False">
+                        <Setter Property="Text" Value="Informe a senha criada pelos seus colegas para acessar essa mesa" />
+                    </DataTrigger>
+                    <DataTrigger TargetType="Label"
+                         Binding="{Binding mesa.isMesaVaga}"
+                         Value="True">
+                        <Setter Property="Text" Value="Crie uma senha e ative essa mesa" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+            <Grid Padding="20"/>
+            <Entry Text="{Binding senhaMesa}" IsPassword="True"/>
+            <Grid Padding="20"/>
+            <Button Clicked="entrar_click" Text="Entrar"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

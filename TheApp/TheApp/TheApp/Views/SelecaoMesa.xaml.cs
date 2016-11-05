@@ -1,9 +1,10 @@
-﻿using System;
+﻿using DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using TheApp.Views.popup;
 using Xamarin.Forms;
 using XLabs.Ioc;
 using XLabs.Platform.Device;
@@ -26,16 +27,21 @@ namespace TheApp.Views
         private void ZXingScannerView_OnScanResult(ZXing.Result result)
         {
 
-            Device.BeginInvokeOnMainThread(() => {
+            Device.BeginInvokeOnMainThread(async () =>
+            {
                 // Stop analysis until we navigate away so we don't keep reading barcodes
                 scanner.IsAnalyzing = false;
 
                 // Show an alert
                 qrResult.Text = "Scanned Barcode: " + result.Text;
+
+                var mesa = await App.TransportManager.PostAsync<MesaDTO>(new AppUtility.Model.MesaRequest() { nomeMesa = result.Text });
                 //await DisplayAlert("Scanned Barcode", result.Text, "OK");
 
+                await this.Navigation.PushAsync(new LogaMesaPopup(mesa));
             });
         }
+
 
         #region referencia futura
         //async Task leitorQr()
@@ -86,6 +92,10 @@ namespace TheApp.Views
         //}
         #endregion
 
-
+        private async void Button_Clicked(object sender, EventArgs e)
+        {
+            var mesa = await App.TransportManager.PostAsync<MesaDTO>(new AppUtility.Model.MesaRequest() { nomeMesa = qrResult.Text });
+            await this.Navigation.PushAsync(new LogaMesaPopup(mesa));
+        }
     }
 }

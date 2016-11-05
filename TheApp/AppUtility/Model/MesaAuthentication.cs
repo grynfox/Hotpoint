@@ -1,4 +1,4 @@
-﻿using AppUtility.Factory;
+﻿using AppUtility.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,26 +7,21 @@ using System.Threading.Tasks;
 
 namespace AppUtility.Model
 {
-    public class MesaAuthentication : IAuthentication
+    public class MesaAuthentication : IXW3FormModel
     {
-        private int mesaId;
-        private string senha;
-
-        string IAuthentication.AuthenticationParameter
+        public int mesaId { get; set; }
+        public string senha { get; set; }
+        public Dictionary<string, string> GetBody()
         {
-            get
-            {
-                var authData = string.Format("{0}:{1}", mesaId, senha);
-                return Convert.ToBase64String(Encoding.UTF8.GetBytes(authData));
-            }
+            var temp = new Dictionary<string, string>();
+            temp.Add("mesaId", mesaId.ToString());
+            temp.Add("senha", senha);
+            return temp;
         }
 
-        string IAuthentication.AuthenticationScheme
+        public string GetControllerPath()
         {
-            get
-            {
-                return "Usuario";
-            }
+            return @"mesas/Authentication";
         }
     }
 }

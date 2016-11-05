@@ -31,19 +31,20 @@ namespace AppUtility.Http
         /// </summary>
         /// <param name="model">Objeto a ser enviado</param>
         /// <returns></returns>
-        public async Task<string> PostAsync(IXW3FormModel model)
+        public async Task<T> PostAsync<T>(IXW3FormModel model)
         {
             FormUrlEncodedContent form = new FormUrlEncodedContent(model.GetBody());
             HttpResponseMessage response = await client.PostAsync(serverUrl + model.GetControllerPath(), form).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
-            return await response.Content.ReadAsStringAsync();
+            var stringResult = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<T>(stringResult);
         }
         /// <summary>
         /// Envia uma requisição post multpart/form-data para o servidor
         /// </summary>
         /// <param name="model">Objeto a ser enviado</param>
         /// <returns></returns>
-        public async Task<string> PostAsync(IDataFormModel model)
+        public async Task<T> PostAsync<T>(IDataFormModel model)
         {
             MultipartFormDataContent form = new MultipartFormDataContent();
             foreach (var value in model.GetBody())
@@ -64,19 +65,21 @@ namespace AppUtility.Http
             //httpClient.Timeout = TimeSpan.FromMinutes(20);
             HttpResponseMessage response = await client.PostAsync(serverUrl + model.GetControllerPath(), form).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
-            return await response.Content.ReadAsStringAsync();
+            var stringResult = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<T>(stringResult);
         }
         /// <summary>
         /// Envia uma requisição Put x-www/form-urlEncoded para o servidor
         /// </summary>
         /// <param name="model">Objeto a ser enviado</param>
         /// <returns></returns>
-        public async Task<string> PutAsync(IXW3FormModel model)
+        public async Task<T> PutAsync<T>(IXW3FormModel model)
         {
             FormUrlEncodedContent form = new FormUrlEncodedContent(model.GetBody());
             HttpResponseMessage response = await client.PutAsync(serverUrl + model.GetControllerPath(), form).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
-            return await response.Content.ReadAsStringAsync();
+            var stringResult = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<T>(stringResult);
         }
 
         /// <summary>
@@ -84,7 +87,7 @@ namespace AppUtility.Http
         /// </summary>
         /// <param name="model">Objeto a ser enviado</param>
         /// <returns></returns>
-        public async Task<string> PutAsync(IDataFormModel model)
+        public async Task<T> PutAsync<T>(IDataFormModel model)
         {
             MultipartFormDataContent form = new MultipartFormDataContent();
             foreach (var value in model.GetBody())
@@ -105,7 +108,8 @@ namespace AppUtility.Http
             //httpClient.Timeout = TimeSpan.FromMinutes(20);
             HttpResponseMessage response = await client.PutAsync(serverUrl + model.GetControllerPath(), form).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
-            return await response.Content.ReadAsStringAsync();
+            var stringResult = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<T>(stringResult);
         }
 
         /// <summary>
@@ -113,7 +117,7 @@ namespace AppUtility.Http
         /// </summary>
         /// <param name="model">Objeto a ser enviado</param>
         /// <returns></returns>
-        public async Task<string> DelAsync(IXW3FormModel model)
+        public async Task<T> DelAsync<T>(IXW3FormModel model)
         {
             string controlerPath = model.GetControllerPath();
             if ((controlerPath.Length - 1) != controlerPath.LastIndexOf('/'))
@@ -126,7 +130,8 @@ namespace AppUtility.Http
             constructor = constructor.Remove(constructor.Length - 1);
             HttpResponseMessage response = await client.DeleteAsync(new Uri(constructor)).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
-            return await response.Content.ReadAsStringAsync();
+            var stringResult = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<T>(stringResult);
         }
 
         /// <summary>

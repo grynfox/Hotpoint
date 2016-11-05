@@ -9,9 +9,12 @@ namespace AppUtility.Model
 {
     public class MesaRequest : IXW3FormModel
     {
+        public string nomeMesa { get; set; }
         public Dictionary<string, string> GetBody()
         {
-            return new Dictionary<string, string>();
+            var tmp = new Dictionary<string, string>();
+            tmp.Add("nomeMesa", nomeMesa);
+            return tmp; 
         }
 
         public string GetControllerPath()

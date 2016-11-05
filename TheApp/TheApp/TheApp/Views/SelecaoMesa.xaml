@@ -22,7 +22,7 @@
 
             <Label Text="Ou insira o numero associado logo abaixo"></Label>
             <Entry x:Name="qrResult"/>
-            <Button  Text="Ir"></Button>
+            <Button Text="Ir" Clicked="Button_Clicked"></Button>
         </StackLayout>
 
     </ContentPage.Content>
