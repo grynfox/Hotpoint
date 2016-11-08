@@ -1,15 +1,19 @@
-namespace TheServer.Models
+namespace DAL.Models
 {
     using System;
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
+    using MySql.Data;
+    using MySql.Data.Entity;
 
     public partial class ModelContext : DbContext
     {
         public ModelContext()
-            : base("name=ModelConfig")
+            :base("server=localhost;user id=root;password=Nicollas7875112;database=banco_bar")//"name=ModelContext")//
         {
+
+                        
         }
 
         public virtual DbSet<categoria> categoria { get; set; }

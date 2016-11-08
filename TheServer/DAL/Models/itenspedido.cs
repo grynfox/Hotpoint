@@ -1,4 +1,4 @@
-namespace TheServer.Models
+namespace DAL.Models
 {
     using System;
     using System.Collections.Generic;
@@ -10,7 +10,6 @@ namespace TheServer.Models
     public partial class itenspedido
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int iditensPedido { get; set; }
 
         public int idPedidoMesa { get; set; }

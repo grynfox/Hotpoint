@@ -1,4 +1,4 @@
-namespace TheServer.Models
+namespace DAL.Models
 {
     using System;
     using System.Collections.Generic;
@@ -16,9 +16,7 @@ namespace TheServer.Models
             mesatempedido = new HashSet<mesatempedido>();
         }
 
-        
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int idPedidoMesa { get; set; }
 
         public int? idMesa { get; set; }

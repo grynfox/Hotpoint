@@ -1,4 +1,4 @@
-namespace TheServer.Models
+namespace DAL.Models
 {
     using System;
     using System.Collections.Generic;
@@ -17,7 +17,6 @@ namespace TheServer.Models
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int idMesa { get; set; }
 
         [Required]
