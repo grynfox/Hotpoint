@@ -4,7 +4,8 @@
              xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
               x:Class="TheApp.Views.SelecaoMesa">
     <ContentPage.Content>
-        <StackLayout Padding="10">
+        <AbsoluteLayout>
+        <StackLayout Padding="10" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
             <Label Text="Leia o QR Code da mesa" HorizontalTextAlignment="Center" FontSize="Large"/>
             <AbsoluteLayout HeightRequest="300" BackgroundColor="White">
                 <zxing:ZXingScannerView x:Name="scanner" 
@@ -23,7 +24,11 @@
             <Label Text="Ou insira o numero associado logo abaixo"></Label>
             <Entry x:Name="qrResult"/>
             <Button Text="Ir" Clicked="Button_Clicked"></Button>
-        </StackLayout>
+            </StackLayout>
+
+            <ActivityIndicator AbsoluteLayout.LayoutBounds=".5,.5,50,50" Color="Red" AbsoluteLayout.LayoutFlags="PositionProportional" 
+                               IsRunning="{Binding IsBusy}"/>
+        </AbsoluteLayout>
 
     </ContentPage.Content>
 </ContentPage>

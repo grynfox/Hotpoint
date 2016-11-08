@@ -19,6 +19,7 @@ namespace TheApp.Views
         public SelecaoMesa()
         {
             InitializeComponent();
+            BindingContext = this;
             //scanner.IsAnalyzing = true;     
             //leitorQr();
 
@@ -33,12 +34,13 @@ namespace TheApp.Views
                 scanner.IsAnalyzing = false;
 
                 // Show an alert
-                qrResult.Text = "Scanned Barcode: " + result.Text;
-
+                qrResult.Text = result.Text;
+                IsBusy = true;
                 var mesa = await App.TransportManager.PostAsync<MesaDTO>(new AppUtility.Model.MesaRequest() { nomeMesa = result.Text });
                 //await DisplayAlert("Scanned Barcode", result.Text, "OK");
 
                 await this.Navigation.PushAsync(new LogaMesaPopup(mesa));
+                IsBusy = false;
             });
         }
 
@@ -94,8 +96,10 @@ namespace TheApp.Views
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
+            IsBusy = true;
             var mesa = await App.TransportManager.PostAsync<MesaDTO>(new AppUtility.Model.MesaRequest() { nomeMesa = qrResult.Text });
             await this.Navigation.PushAsync(new LogaMesaPopup(mesa));
+            IsBusy = false;
         }
     }
 }
