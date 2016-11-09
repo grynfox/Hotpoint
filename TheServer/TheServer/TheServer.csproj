@@ -186,6 +186,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Attributes\MesaAuthorizationAttribute.cs" />
+    <Compile Include="Controllers\ItensController.cs" />
     <Compile Include="Controllers\mesasController.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Global.asax.cs">

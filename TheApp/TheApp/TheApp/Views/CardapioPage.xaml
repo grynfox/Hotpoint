@@ -2,68 +2,34 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TheApp.Views.CardapioPage" BackgroundColor="#e6e6aa">
+    <!--xmlns:xlabs="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"-->
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout>
-                <StackLayout BackgroundColor="#f2f2f2" Padding="10">
-                    <StackLayout Orientation="Horizontal">
-                        <Image BackgroundColor="Maroon" HeightRequest="100" WidthRequest="100"/>
-                        <StackLayout>
-                            <Label TextColor="Red" FontSize="25" Text="Valor: R$ 25,00"></Label>
-                            <Label TextColor="Gray" FontSize="15" Text="Recomendado por 24 pessoas"></Label>
-                            <Label TextColor="Gray" FontSize="15" Text="400g p/ porção"></Label>
-                        </StackLayout>                        
-                    </StackLayout>
-                    <Label TextColor="Gray" FontSize="18"
-                           Text="In sem justo, commodo ut, suscipit at, pharetra vitae, orci. Duis sapien nunc, commodo et, interdum suscipit, sollicitudin et, dolor."/>
-                </StackLayout>
-                
-                <!--REPETIÇÂO-->
-                
-                <Grid Padding="4"/>
-                <StackLayout BackgroundColor="#f2f2f2" Padding="10">
-                    <StackLayout Orientation="Horizontal">
-                        <Image BackgroundColor="Maroon" HeightRequest="100" WidthRequest="100"/>
-                        <StackLayout>
-                            <Label TextColor="Red" FontSize="25" Text="Valor: R$ 25,00"></Label>
-                            <Label TextColor="Gray" FontSize="15" Text="Recomendado por 24 pessoas"></Label>
-                            <Label TextColor="Gray" FontSize="15" Text="400g p/ porção"></Label>
-                        </StackLayout>
-                    </StackLayout>
-                    <Label TextColor="Gray" FontSize="18"
-                           Text="In sem justo, commodo ut, suscipit at, pharetra vitae, orci. Duis sapien nunc, commodo et, interdum suscipit, sollicitudin et, dolor."/>
-                </StackLayout>
-                
-                <Grid Padding="4"/>
-                <StackLayout BackgroundColor="#f2f2f2" Padding="10">
-                    <StackLayout Orientation="Horizontal">
-                        <Image BackgroundColor="Maroon" HeightRequest="100" WidthRequest="100"/>
-                        <StackLayout>
-                            <Label TextColor="Red" FontSize="25" Text="Valor: R$ 25,00"></Label>
-                            <Label TextColor="Gray" FontSize="15" Text="Recomendado por 24 pessoas"></Label>
-                            <Label TextColor="Gray" FontSize="15" Text="400g p/ porção"></Label>
-                        </StackLayout>
-                    </StackLayout>
-                    <Label TextColor="Gray" FontSize="18"
-                           Text="In sem justo, commodo ut, suscipit at, pharetra vitae, orci. Duis sapien nunc, commodo et, interdum suscipit, sollicitudin et, dolor."/>
-                </StackLayout>
-                
-                <Grid Padding="4"/>
-                <StackLayout BackgroundColor="#f2f2f2" Padding="10">
-                    <StackLayout Orientation="Horizontal">
-                        <Image BackgroundColor="Maroon" HeightRequest="100" WidthRequest="100"/>
-                        <StackLayout>
-                            <Label TextColor="Red" FontSize="25" Text="Valor: R$ 25,00"></Label>
-                            <Label TextColor="Gray" FontSize="15" Text="Recomendado por 24 pessoas"></Label>
-                            <Label TextColor="Gray" FontSize="15" Text="400g p/ porção"></Label>
-                        </StackLayout>
-                    </StackLayout>
-                    <Label TextColor="Gray" FontSize="18"
-                           Text="In sem justo, commodo ut, suscipit at, pharetra vitae, orci. Duis sapien nunc, commodo et, interdum suscipit, sollicitudin et, dolor."/>
-                </StackLayout>
+        <StackLayout>
+            <Picker SelectedIndexChanged="Picker_SelectedIndexChanged" x:Name="CatPicker" Title="Selecione uma Categoria" HorizontalOptions="CenterAndExpand"></Picker>
 
-                <!--REPETIÇÂO-->
-            </StackLayout>
-        </ScrollView>
+            <ListView ItemsSource="{Binding teste}" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout BackgroundColor="#f2f2f2" Padding="10" Margin="0,0,0,5">
+                                <StackLayout Orientation="Horizontal">
+                                    <Image BackgroundColor="Maroon" HeightRequest="100" WidthRequest="100"/>
+                                    <StackLayout>
+                                        <Label TextColor="Red" FontSize="25" Text="Valor: R$ 25,00"></Label>
+                                        <Label TextColor="Gray" FontSize="15" Text="Recomendado por 24 pessoas"></Label>
+                                        <Label TextColor="Gray" FontSize="15" Text="400g p/ porção"></Label>
+                                    </StackLayout>
+                                </StackLayout>
+                                <Label Text="{Binding descricao}"/>
+                                <Label Text="{Binding idCategoria}"/>
+                                <Label TextColor="Gray" FontSize="18"
+                           Text="In sem justo, commodo ut, suscipit at, pharetra vitae, orci. Duis sapien nunc, commodo et, interdum suscipit, sollicitudin et, dolor."/>
+                            </StackLayout>             
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>            
+            <!--REPETIÇÂO-->
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\ItensDAL.cs" />
     <Compile Include="Core\MesaDAL.cs" />
     <Compile Include="Models\categoria.cs" />
     <Compile Include="Models\grupopermicoes.cs" />

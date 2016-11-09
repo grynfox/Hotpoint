@@ -35,6 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CategoriaDTO.cs" />
     <Compile Include="MesaDTO.cs" />
     <Compile Include="MesatempedidoDTO.cs" />
     <Compile Include="PedidomesaDTO.cs" />
