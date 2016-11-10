@@ -4,8 +4,6 @@ namespace DAL.Models
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
-    using MySql.Data;
-    using MySql.Data.Entity;
 
     public partial class ModelContext : DbContext
     {
@@ -13,7 +11,7 @@ namespace DAL.Models
             :base("server=localhost;user id=root;password=Nicollas7875112;database=banco_bar")//"name=ModelContext")//
         {
 
-                        
+
         }
 
         public virtual DbSet<categoria> categoria { get; set; }
@@ -47,6 +45,10 @@ namespace DAL.Models
 
             modelBuilder.Entity<itens>()
                 .Property(e => e.nome)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<itens>()
+                .Property(e => e.nomeImagem)
                 .IsUnicode(false);
 
             modelBuilder.Entity<itens>()

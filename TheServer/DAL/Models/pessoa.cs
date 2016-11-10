@@ -10,6 +10,7 @@ namespace DAL.Models
     public partial class pessoa
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int idPessoa { get; set; }
 
         public int idgrupoPermicoes { get; set; }

@@ -17,6 +17,7 @@ namespace DAL.Models
         }
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int idPedidoMesa { get; set; }
 
         public int? idMesa { get; set; }

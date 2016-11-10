@@ -16,11 +16,15 @@ namespace DAL.Models
         }
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int idItem { get; set; }
 
         [Required]
         [StringLength(100)]
         public string nome { get; set; }
+
+        [StringLength(100)]
+        public string nomeImagem { get; set; }
 
         [StringLength(400)]
         public string informacao { get; set; }

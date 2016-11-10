@@ -16,6 +16,7 @@ namespace DAL.Models
         }
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int idCategoria { get; set; }
 
         [Required]

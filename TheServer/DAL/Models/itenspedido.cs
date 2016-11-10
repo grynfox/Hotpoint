@@ -10,6 +10,7 @@ namespace DAL.Models
     public partial class itenspedido
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int iditensPedido { get; set; }
 
         public int idPedidoMesa { get; set; }
