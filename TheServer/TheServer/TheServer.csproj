@@ -188,6 +188,7 @@
     <Compile Include="Attributes\MesaAuthorizationAttribute.cs" />
     <Compile Include="Controllers\ItensController.cs" />
     <Compile Include="Controllers\mesasController.cs" />
+    <Compile Include="Extensions\NewtonsoftJsonExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -200,7 +201,9 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
+    <Content Include="Files\Itens\oficial\batatafrita.jpg" />
     <Content Include="Files\Itens\oficial\imagemTeste.jpeg" />
+    <Content Include="Files\Itens\oficial\skol.jpg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />

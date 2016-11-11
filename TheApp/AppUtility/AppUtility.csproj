@@ -35,6 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Converter\ResolveUrlConverter.cs" />
     <Compile Include="Factory\IAuthentication.cs" />
     <Compile Include="Http\IDataFormModel.cs" />
     <Compile Include="Http\IXW3FormModel.cs" />
@@ -42,11 +43,10 @@
     <Compile Include="Http\RequestResult.cs" />
     <Compile Include="Http\HttpRequest.cs" />
     <Compile Include="Model\CategoriaRequest.cs" />
-    <Compile Include="Model\ClasseExemplo.cs" />
+    <Compile Include="Model\ItensRequest.cs" />
     <Compile Include="Model\MesaAuthentication.cs" />
     <Compile Include="Model\MesaAuthenticationFuturo.cs" />
     <Compile Include="Model\MesaRequest.cs" />
-    <Compile Include="Model\PingServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

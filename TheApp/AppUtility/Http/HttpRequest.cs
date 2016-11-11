@@ -12,13 +12,13 @@ namespace AppUtility.Http
     public class HttpRequest
     {
         private HttpClient client;
-        public string serverUrl { get; private set; }
+        public static string serverUrl { get; private set; }
         public bool HasAuthorized { get; private set; }
 
         internal HttpRequest(string serverUrl)
         {
             client = new HttpClient();
-            this.serverUrl = serverUrl;
+            HttpRequest.serverUrl = serverUrl;
         }
 
         internal void InsertAuthorization(AuthenticationHeaderValue auth)

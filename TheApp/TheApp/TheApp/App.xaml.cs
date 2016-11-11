@@ -19,7 +19,7 @@ namespace TheApp
         {
             InitializeComponent();
            
-            TransportManager = RequestFactory.createHttp("http://192.168.0.104/");
+            TransportManager = RequestFactory.createHttp("http://192.168.0.105/");
             
             if(!isLoggedIn)
                 MainPage = new NavigationPage(new TheApp.Views.MainPage());

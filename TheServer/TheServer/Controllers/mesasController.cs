@@ -10,6 +10,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TheServer.Attributes;
+using TheServer.Extensions;
 
 namespace TheServer.Controllers
 {
@@ -25,11 +26,11 @@ namespace TheServer.Controllers
             var result = MesaDAL.listaMesas(nomeMesa);
             if (result.Count > 1)
             {
-                return Json(result.ToList(), JsonRequestBehavior.AllowGet);
+                return result.ToList().ToJsonResult();
             }
             else if (result.Count == 1)
             {
-                return Json(result[0], JsonRequestBehavior.AllowGet);
+                return result[0].ToJsonResult();
             }
             return new HttpStatusCodeResult(HttpStatusCode.NoContent);
         }

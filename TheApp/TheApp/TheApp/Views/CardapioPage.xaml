@@ -1,29 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"             
+             xmlns:Converter="clr-namespace:AppUtility.Converter;assembly=AppUtility"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TheApp.Views.CardapioPage" BackgroundColor="#e6e6aa">
     <!--xmlns:xlabs="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"-->
+
+    <ContentPage.Resources>
+    <ResourceDictionary>
+            <Converter:ResolveUrlConverter x:Key="UrlConverter"></Converter:ResolveUrlConverter>
+    </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <ContentPage.Content>
         <StackLayout>
             <Picker SelectedIndexChanged="Picker_SelectedIndexChanged" x:Name="CatPicker" Title="Selecione uma Categoria" HorizontalOptions="CenterAndExpand"></Picker>
 
-            <ListView ItemsSource="{Binding teste}" HasUnevenRows="True">
+            <ListView ItemsSource="{Binding Itens}" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout BackgroundColor="#f2f2f2" Padding="10" Margin="0,0,0,5">
                                 <StackLayout Orientation="Horizontal">
-                                    <Image BackgroundColor="Maroon" HeightRequest="100" WidthRequest="100"/>
+                                    <Image BackgroundColor="Maroon" Source="{Binding nomeImagem, Converter={StaticResource UrlConverter}, ConverterParameter='Files/Itens/Oficial/'}" HeightRequest="100" WidthRequest="100"/>
                                     <StackLayout>
-                                        <Label TextColor="Red" FontSize="25" Text="Valor: R$ 25,00"></Label>
-                                        <Label TextColor="Gray" FontSize="15" Text="Recomendado por 24 pessoas"></Label>
-                                        <Label TextColor="Gray" FontSize="15" Text="400g p/ porção"></Label>
+                                        <Label TextColor="Red" FontSize="25" Text="{Binding nome}"></Label>
+                                        <Label TextColor="Gray" FontSize="15" Text="{Binding valor,  StringFormat='Valor: {0:C2}'}"></Label>
+                                        <!--<Label TextColor="Gray" FontSize="15" Text="400g p/ porção"></Label>-->
                                     </StackLayout>
                                 </StackLayout>
-                                <Label Text="{Binding descricao}"/>
-                                <Label Text="{Binding idCategoria}"/>
-                                <Label TextColor="Gray" FontSize="18"
-                           Text="In sem justo, commodo ut, suscipit at, pharetra vitae, orci. Duis sapien nunc, commodo et, interdum suscipit, sollicitudin et, dolor."/>
+                                <Label TextColor="Gray" FontSize="18" Text="{Binding informacao}"/>
                             </StackLayout>             
                         </ViewCell>
                     </DataTemplate>
