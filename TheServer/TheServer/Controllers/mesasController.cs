@@ -1,4 +1,5 @@
 ﻿using DAL.Core;
+using DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -56,7 +57,7 @@ namespace TheServer.Controllers
         {
             var dal = new MesaDAL(Startup.dataBase);
             var mesa = dal.PegaMesaPorId(mesaId);
-           
+
             if (mesa == null) // id da mesa não existe
             {
                 return new HttpUnauthorizedResult();
@@ -68,7 +69,7 @@ namespace TheServer.Controllers
             {
                 return new HttpUnauthorizedResult();
             }
-            else if( mesaTmPdd == null) // cria mesa 
+            else if (mesaTmPdd == null) // cria mesa 
             {
                 var pedido = dal.InserePedidoEmMesa(mesa, senha);
                 if (pedido != null)
@@ -88,7 +89,6 @@ namespace TheServer.Controllers
         }
 
         [HttpPost]
-        [MesaAuthorization]
         public ActionResult CompraProduto(int idItem, float quantidade, string observacao = null)
         {
             var dal = new PedidoDAL(Startup.dataBase);
@@ -98,6 +98,26 @@ namespace TheServer.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.OK, "Compra Efetuada");
             }
             return new HttpStatusCodeResult(HttpStatusCode.InternalServerError, "Algo deu errado");
+        }
+
+        [HttpPost]
+        public ActionResult FecharConta()
+        {
+            throw new NotImplementedException("");
+        }
+
+        /// <summary>
+        /// Se não passar parametro pega todos os pedidos
+        /// Se passar pega os itens do pedido no estado q eu passar
+        /// </summary>
+        /// <param name="progresso">Estado do pedido</param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult PegaMeusPedidos(int? progresso = null)
+        {
+
+            return Startup.dataBase.Entry<pedidomesa>(SessionPersister.Pedido).Entity.itenspedido.ToJsonResult();
+            throw new NotImplementedException("");
         }
 
         protected override void Dispose(bool disposing)
