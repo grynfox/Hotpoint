@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TheApp.Views.viewTeste.Page1" BackgroundColor="#e6e6aa">
+    <ContentPage.Content>
+        <ScrollView>
+            <AbsoluteLayout>
+                <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                    <Picker x:Name="CatPicker" Title="Selecione uma Categoria" HorizontalOptions="CenterAndExpand"></Picker>
+                    <StackLayout BackgroundColor="#f2f2f2" Padding="10" Margin="0,0,0,5">
+                        <StackLayout Orientation="Horizontal">
+                            <Image BackgroundColor="Maroon"  HeightRequest="100" WidthRequest="100"/>
+                            <StackLayout>
+                                <Label TextColor="Red" FontSize="25" Text="Nome"></Label>
+                                <Label TextColor="Gray" FontSize="15" Text="Valor: R$ 10,00"></Label>
+                                <!--<Label TextColor="Gray" FontSize="15" Text="400g p/ porção"></Label>-->
+                            </StackLayout>
+                        </StackLayout>
+                        <Label TextColor="Gray" FontSize="18" Text="Descrição asiduhas asidu hasd asda "/>
+                    </StackLayout>
+
+                    <StackLayout BackgroundColor="#f2f2f2" Padding="10" Margin="0,0,0,5">
+                        <StackLayout Orientation="Horizontal">
+                            <Image BackgroundColor="Maroon"  HeightRequest="100" WidthRequest="100"/>
+                            <StackLayout>
+                                <Label TextColor="Red" FontSize="25" Text="Nome"></Label>
+                                <Label TextColor="Gray" FontSize="15" Text="Valor: R$ 10,00"></Label>
+                                <!--<Label TextColor="Gray" FontSize="15" Text="400g p/ porção"></Label>-->
+                            </StackLayout>
+                        </StackLayout>
+                        <Label TextColor="Gray" FontSize="18" Text="Descrição asiduhas asidu hasd"/>
+                    </StackLayout>
+
+                    <StackLayout BackgroundColor="#f2f2f2" Padding="10" Margin="0,0,0,5">
+                        <StackLayout Orientation="Horizontal">
+                            <Image BackgroundColor="Maroon"  HeightRequest="100" WidthRequest="100"/>
+                            <StackLayout>
+                                <Label TextColor="Red" FontSize="25" Text="Nome"></Label>
+                                <Label TextColor="Gray" FontSize="15" Text="Valor: R$ 10,00"></Label>
+                                <!--<Label TextColor="Gray" FontSize="15" Text="400g p/ porção"></Label>-->
+                            </StackLayout>
+                        </StackLayout>
+                        <Label TextColor="Gray" FontSize="18" Text="Descrição asiduhas asidu hasd"/>
+                    </StackLayout>
+
+                    <StackLayout BackgroundColor="#f2f2f2" Padding="10" Margin="0,0,0,5">
+                        <StackLayout Orientation="Horizontal">
+                            <Image BackgroundColor="Maroon"  HeightRequest="100" WidthRequest="100"/>
+                            <StackLayout>
+                                <Label TextColor="Red" FontSize="25" Text="Nome"></Label>
+                                <Label TextColor="Gray" FontSize="15" Text="Valor: R$ 10,00"></Label>
+                                <!--<Label TextColor="Gray" FontSize="15" Text="400g p/ porção"></Label>-->
+                            </StackLayout>
+                        </StackLayout>
+                        <Label TextColor="Gray" FontSize="18" Text="Descrição asiduhas asidu hasd"/>
+                    </StackLayout>
+
+                    <StackLayout BackgroundColor="#f2f2f2" Padding="10" Margin="0,0,0,5">
+                        <StackLayout Orientation="Horizontal">
+                            <Image BackgroundColor="Maroon"  HeightRequest="100" WidthRequest="100"/>
+                            <StackLayout>
+                                <Label TextColor="Red" FontSize="25" Text="Nome"></Label>
+                                <Label TextColor="Gray" FontSize="15" Text="Valor: R$ 10,00"></Label>
+                                <!--<Label TextColor="Gray" FontSize="15" Text="400g p/ porção"></Label>-->
+                            </StackLayout>
+                        </StackLayout>
+                        <Label TextColor="Gray" FontSize="18" Text="Descrição asiduhas asidu hasd"/>
+                    </StackLayout>
+
+                    <StackLayout BackgroundColor="#f2f2f2" Padding="10" Margin="0,0,0,5">
+                        <StackLayout Orientation="Horizontal">
+                            <Image BackgroundColor="Maroon"  HeightRequest="100" WidthRequest="100"/>
+                            <StackLayout>
+                                <Label TextColor="Red" FontSize="25" Text="Nome"></Label>
+                                <Label TextColor="Gray" FontSize="15" Text="Valor: R$ 10,00"></Label>
+                                <!--<Label TextColor="Gray" FontSize="15" Text="400g p/ porção"></Label>-->
+                            </StackLayout>
+                        </StackLayout>
+                        <Label TextColor="Gray" FontSize="18" Text="Descrição asiduhas asidu hasd"/>
+                    </StackLayout>
+
+                </StackLayout>
+                <ActivityIndicator IsRunning="True" AbsoluteLayout.LayoutFlags="PositionProportional" Color="#e0e0e0" AbsoluteLayout.LayoutBounds=".5,.5, 60, 60"></ActivityIndicator>
+            </AbsoluteLayout>
+            <!--REPETIÇÂO-->
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

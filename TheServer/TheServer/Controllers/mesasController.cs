@@ -11,6 +11,7 @@ using System.Web;
 using System.Web.Mvc;
 using TheServer.Attributes;
 using TheServer.Extensions;
+using TheServer.Securety;
 
 namespace TheServer.Controllers
 {
@@ -53,27 +54,47 @@ namespace TheServer.Controllers
         public ActionResult Authentication(int mesaId, string senha)
         {
             var mesa = MesaDAL.PegaMesaPorId(mesaId);
-            var pedidoMesa = mesa.mesatempedido.FirstOrDefault();
-
+           
             if (mesa == null) // id da mesa não existe
             {
                 return new HttpUnauthorizedResult();
             }
 
-            if (pedidoMesa != null && string.Compare(pedidoMesa.senhaPedido, senha, false) != 0) // senha invalida
+            var mesaTmPdd = mesa.mesatempedido.FirstOrDefault();
+
+            if (mesaTmPdd != null && string.Compare(mesaTmPdd.senhaPedido, senha, false) != 0) // senha invalida
             {
                 return new HttpUnauthorizedResult();
             }
-            else if( pedidoMesa == null) // cria mesa 
+            else if( mesaTmPdd == null) // cria mesa 
             {
-                if(MesaDAL.InserePedidoEmMesa(mesa, senha))
+                var pedido = MesaDAL.InserePedidoEmMesa(mesa, senha);
+                if (pedido != null)
                 {
+                    SessionPersister.Mesa = mesa;
+                    SessionPersister.Pedido = pedido;
                     return new HttpStatusCodeResult(HttpStatusCode.OK, "Autenticação Autorizada, senha criada");
                 }
                 return new HttpStatusCodeResult(HttpStatusCode.InternalServerError, "Algo deu errado ao abrir a mesa");
             }
+
+            //inserir em sessão
+            SessionPersister.Mesa = mesa;
+            SessionPersister.Pedido = mesaTmPdd.pedidomesa;
             return new HttpStatusCodeResult(HttpStatusCode.OK, "Autenticação Autorizada, senha criada");
 
+        }
+
+        [HttpPost]
+        [MesaAuthorization]
+        public ActionResult CompraProduto(int idItem, float quantidade, string observacao = null)
+        {
+            var pedido = SessionPersister.Pedido;
+            if (PedidoDAL.inserePedidoItem(pedido, idItem, quantidade, observacao))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.OK, "Compra Efetuada");
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.InternalServerError, "Algo deu errado");
         }
 
         protected override void Dispose(bool disposing)

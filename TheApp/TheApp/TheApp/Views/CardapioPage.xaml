@@ -20,6 +20,9 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout BackgroundColor="#f2f2f2" Padding="10" Margin="0,0,0,5">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1" CommandParameter="{Binding .}"/>
+                                </StackLayout.GestureRecognizers>
                                 <StackLayout Orientation="Horizontal">
                                     <Image BackgroundColor="Maroon" Source="{Binding nomeImagem, Converter={StaticResource UrlConverter}, ConverterParameter='Files/Itens/Oficial/'}" HeightRequest="100" WidthRequest="100"/>
                                     <StackLayout>

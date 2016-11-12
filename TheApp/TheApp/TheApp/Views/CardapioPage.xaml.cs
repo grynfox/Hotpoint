@@ -61,5 +61,13 @@ namespace TheApp.Views
             }
             IsBusy = false;
         }
+
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            TappedEventArgs ev = e as TappedEventArgs;
+            ItensDTO temp = ev.Parameter as ItensDTO;
+
+            await DisplayAlert("Clicou", temp.nome, "Ok");
+        }
     }
 }

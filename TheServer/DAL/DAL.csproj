@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="Core\ItensDAL.cs" />
     <Compile Include="Core\MesaDAL.cs" />
+    <Compile Include="Core\PedidoDAL.cs" />
     <Compile Include="Models\categoria.cs" />
     <Compile Include="Models\grupopermicoes.cs" />
     <Compile Include="Models\itens.cs" />

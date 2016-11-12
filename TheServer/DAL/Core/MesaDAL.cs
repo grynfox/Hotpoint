@@ -12,7 +12,7 @@ namespace DAL.Core
     static class MesaDAL
     {
 
-        internal static bool InserePedidoEmMesa(mesa mesa, string senha)
+        internal static pedidomesa InserePedidoEmMesa(mesa mesa, string senha)
         {
             try
             {
@@ -24,12 +24,12 @@ namespace DAL.Core
                     db.Entry(mesa).State = EntityState.Unchanged;
                     db.Entry(pm).State = EntityState.Added;
                     db.SaveChanges();
-                    return true;
+                    return pm;
                 }
             }
             catch
             {
-                return false;
+                return null;
             }
         }
 
