@@ -14,15 +14,17 @@ namespace TheServer.Controllers
         // GET: Itens
         public ActionResult pegaCategorias()
         {
-            return ItensDAL.pegaTodasCategorias().ToJsonResult();
+            var dal = new ItensDAL(Startup.dataBase);
+            return dal.pegaTodasCategorias().ToJsonResult();
         }
 
 
         public ActionResult pegaItens(int? idCategoria = null)
         {
+            var dal = new ItensDAL(Startup.dataBase);
             //return Json(ItensDAL.pegaItens(idCategoria), JsonRequestBehavior.AllowGet);
             //return Content(JsonConvert.SerializeObject(ItensDAL.pegaItens(idCategoria), new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }), "application/json");
-            return ItensDAL.pegaItens(idCategoria).ToJsonResult();
+            return dal.pegaItens(idCategoria).ToJsonResult();
         }
     }
 }

@@ -24,7 +24,8 @@ namespace TheServer.Controllers
         [AllowAnonymous]
         public ActionResult Index(string nomeMesa = null)
         {
-            var result = MesaDAL.listaMesas(nomeMesa);
+            var dal = new MesaDAL(Startup.dataBase);
+            var result = dal.listaMesas(nomeMesa);
             if (result.Count > 1)
             {
                 return result.ToList().ToJsonResult();
@@ -53,7 +54,8 @@ namespace TheServer.Controllers
         [AllowAnonymous]
         public ActionResult Authentication(int mesaId, string senha)
         {
-            var mesa = MesaDAL.PegaMesaPorId(mesaId);
+            var dal = new MesaDAL(Startup.dataBase);
+            var mesa = dal.PegaMesaPorId(mesaId);
            
             if (mesa == null) // id da mesa não existe
             {
@@ -68,7 +70,7 @@ namespace TheServer.Controllers
             }
             else if( mesaTmPdd == null) // cria mesa 
             {
-                var pedido = MesaDAL.InserePedidoEmMesa(mesa, senha);
+                var pedido = dal.InserePedidoEmMesa(mesa, senha);
                 if (pedido != null)
                 {
                     SessionPersister.Mesa = mesa;
@@ -89,8 +91,9 @@ namespace TheServer.Controllers
         [MesaAuthorization]
         public ActionResult CompraProduto(int idItem, float quantidade, string observacao = null)
         {
+            var dal = new PedidoDAL(Startup.dataBase);
             var pedido = SessionPersister.Pedido;
-            if (PedidoDAL.inserePedidoItem(pedido, idItem, quantidade, observacao))
+            if (dal.inserePedidoItem(pedido, idItem, quantidade, observacao))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.OK, "Compra Efetuada");
             }

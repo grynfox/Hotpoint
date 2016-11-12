@@ -9,48 +9,52 @@ using System.Threading.Tasks;
 
 namespace DAL.Core
 {
-    static class ItensDAL
+    class ItensDAL
     {
-        public static List<CategoriaDTO> pegaTodasCategorias()
+        private ModelContext db;
+        public ItensDAL(ModelContext db)
         {
-            using (var db = new ModelContext())
-            {
-                var query = from cat in db.categoria
-                            select new CategoriaDTO { idCategoria = cat.idCategoria, descricao = cat.descricao };
-
-                var result = query.ToList();
-                return result;
-            }
+            this.db = db;
         }
 
-        public static List<ItensDTO> pegaItens(int? idCategoria)
+
+        public List<CategoriaDTO> pegaTodasCategorias()
         {
-            using (var db = new ModelContext())
-            {
-                var query = from itns in db.itens.Include(i => i.categoria)
-                            select new ItensDTO
+            var query = from cat in db.categoria
+                        select new CategoriaDTO { idCategoria = cat.idCategoria, descricao = cat.descricao };
+
+            var result = query.ToList();
+            return result;
+
+        }
+
+        public List<ItensDTO> pegaItens(int? idCategoria)
+        {
+
+            var query = from itns in db.itens.Include(i => i.categoria)
+                        select new ItensDTO
+                        {
+                            categoria = new CategoriaDTO
                             {
-                                categoria = new CategoriaDTO
-                                {
-                                    descricao = itns.categoria.descricao,
-                                    idCategoria = itns.categoria.idCategoria
-                                },
-                                idItem = itns.idItem,
-                                informacao = itns.informacao,
-                                nome = itns.nome,
-                                nomeImagem = itns.nomeImagem,
-                                valor = itns.valor
+                                descricao = itns.categoria.descricao,
+                                idCategoria = itns.categoria.idCategoria
+                            },
+                            idItem = itns.idItem,
+                            informacao = itns.informacao,
+                            nome = itns.nome,
+                            nomeImagem = itns.nomeImagem,
+                            valor = itns.valor
 
-                            };
+                        };
 
-                if (idCategoria != null)
-                {
-                    query = query.Where((i) => i.categoria.idCategoria == idCategoria);
-                }
-
-                var result = query.ToList();
-                return result;
+            if (idCategoria != null)
+            {
+                query = query.Where((i) => i.categoria.idCategoria == idCategoria);
             }
+
+            var result = query.ToList();
+            return result;
+
         }
     }
 }
