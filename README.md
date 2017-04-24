@@ -4,9 +4,8 @@ This README would normally document whatever steps are necessary to get your app
 
 ### What is this repository for? ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+Projeto realizado com foco no trabalho de diplomação de ciências da computação da Puc Minas Poços de Caldas 
+O projeto tem por base a utilização de um app que auxilie bares e restaurantes em seus pedidos.
 
 ### How do I get set up? ###
 
